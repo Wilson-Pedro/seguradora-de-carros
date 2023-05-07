@@ -20,6 +20,8 @@ import com.wamk.carInsurence.dtos.ApoliceDTO;
 import com.wamk.carInsurence.entities.Apolice;
 import com.wamk.carInsurence.services.ApoliceService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/apolices")
 public class ApoliceController {
@@ -28,7 +30,7 @@ public class ApoliceController {
 	private ApoliceService apoliceService;
 	
 	@PostMapping
-	public ResponseEntity<Apolice> addApolice(@RequestBody ApoliceDTO apoliceDTO){
+	public ResponseEntity<Apolice> addApolice(@Valid @RequestBody ApoliceDTO apoliceDTO){
 		var apolice = new Apolice();
 		BeanUtils.copyProperties(apoliceDTO, apolice);
 		return ResponseEntity.status(HttpStatus.CREATED).body(apoliceService.save(apolice));
@@ -48,7 +50,7 @@ public class ApoliceController {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Apolice> updateApolice(@PathVariable Long id,
-			@RequestBody ApoliceDTO apoliceDTO){
+			@Valid @RequestBody ApoliceDTO apoliceDTO){
 		Optional<Apolice> apoliceOPTIONAL = apoliceService.findById(id);
 		var apolice = new Apolice();
 		BeanUtils.copyProperties(apoliceDTO, apolice);

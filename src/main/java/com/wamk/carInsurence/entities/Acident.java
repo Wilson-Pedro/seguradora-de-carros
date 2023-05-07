@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,15 +23,20 @@ public class Acident implements Serializable{
 	private Instant hora_acidente;
 	private String local_acidente;
 	
+	@ManyToOne
+	@JoinColumn(name = "car_id")
+	private Car car;
+	
 	public Acident() {
 	}
 
-	public Acident(Long id, Instant data_acidente, Instant hora_acidente, String local_acidente) {
+	public Acident(Long id, Instant data_acidente, Instant hora_acidente, String local_acidente, Car car) {
 		super();
 		this.id = id;
 		this.data_acidente = data_acidente;
 		this.hora_acidente = hora_acidente;
 		this.local_acidente = local_acidente;
+		this.car = car;
 	}
 
 	public Long getId() {

@@ -20,6 +20,8 @@ import com.wamk.carInsurence.dtos.ClientDTO;
 import com.wamk.carInsurence.entities.Client;
 import com.wamk.carInsurence.services.ClientService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
@@ -28,7 +30,7 @@ public class ClientController {
 	private ClientService clientService;
 	
 	@PostMapping
-	public ResponseEntity<Client> adcionar(@RequestBody ClientDTO clientDTO) {
+	public ResponseEntity<Client> adcionar(@Valid @RequestBody ClientDTO clientDTO) {
 		var client = new Client();
 		BeanUtils.copyProperties(clientDTO, client);
 		return ResponseEntity.status(HttpStatus.CREATED).body(clientService.save(client));
@@ -47,7 +49,7 @@ public class ClientController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Client> updateClient(@RequestBody ClientDTO clientDTO, 
+	public ResponseEntity<Client> updateClient(@Valid @RequestBody ClientDTO clientDTO, 
 			@PathVariable Long id){
 		
 		Optional<Client> clientOPTIONAL = clientService.findById(id);

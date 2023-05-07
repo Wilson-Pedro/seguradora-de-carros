@@ -1,11 +1,17 @@
 package com.wamk.carInsurence.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,14 +25,23 @@ public class Car implements Serializable{
 	private String register;
 	private String brand;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy = "car")
+	private Apolice apolice;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "car")
+	private List<Acident> acidents = new ArrayList<>();
+	
 	public Car() {
 	}
 
-	public Car(Long id, String register, String brand) {
+	public Car(Long id, String register, String brand, Apolice apolice) {
 		super();
 		this.id = id;
 		this.register = register;
 		this.brand = brand;
+		this.apolice = apolice;
 	}
 
 	public Long getId() {
@@ -51,6 +66,18 @@ public class Car implements Serializable{
 
 	public void setBrand(String brand) {
 		this.brand = brand;
+	}
+
+	public Apolice getApolice() {
+		return apolice;
+	}
+
+	public void setApolice(Apolice apolice) {
+		this.apolice = apolice;
+	}
+	
+	public List<Acident> getAcidents() {
+		return acidents;
 	}
 
 	@Override

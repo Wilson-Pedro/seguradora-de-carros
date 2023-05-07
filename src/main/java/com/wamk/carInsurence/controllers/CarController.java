@@ -20,6 +20,8 @@ import com.wamk.carInsurence.dtos.CarDTO;
 import com.wamk.carInsurence.entities.Car;
 import com.wamk.carInsurence.services.CarService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/cars")
 public class CarController {
@@ -28,7 +30,7 @@ public class CarController {
 	private CarService carService;
 	
 	@PostMapping
-	public ResponseEntity<Car> addCar(@RequestBody CarDTO carDTO){
+	public ResponseEntity<Car> addCar(@Valid @RequestBody CarDTO carDTO){
 		var car = new Car();
 		BeanUtils.copyProperties(carDTO, car);
 		return ResponseEntity.status(HttpStatus.CREATED).body(carService.save(car));
@@ -47,7 +49,7 @@ public class CarController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Car> updateCar(@PathVariable Long id, 
+	public ResponseEntity<Car> updateCar(@Valid @PathVariable Long id, 
 			@RequestBody CarDTO carDTO){
 		
 		Optional<Car> carOPTIONAL = carService.findById(id);

@@ -3,11 +3,18 @@ package com.wamk.carInsurence.dtos;
 import java.io.Serializable;
 import java.time.Instant;
 
+import jakarta.validation.constraints.NotNull;
+
 public class AcidentDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull(message = "data_acidente is mandatory")
 	private Instant data_acidente;
+	
+	@NotNull(message = "hora_acidente is mandatory")
 	private Instant hora_acidente;
+	
+	@NotNull(message = "local_acidente is mandatory")
 	private String local_acidente;
 	
 	public AcidentDTO() {

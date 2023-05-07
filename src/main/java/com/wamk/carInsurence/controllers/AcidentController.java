@@ -20,6 +20,8 @@ import com.wamk.carInsurence.dtos.AcidentDTO;
 import com.wamk.carInsurence.entities.Acident;
 import com.wamk.carInsurence.services.AcidentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/acidents")
 public class AcidentController {
@@ -28,7 +30,7 @@ public class AcidentController {
 	private AcidentService acidentService;
 	
 	@PostMapping
-	public ResponseEntity<Acident> addAcident(@RequestBody AcidentDTO acidentDTO){
+	public ResponseEntity<Acident> addAcident(@Valid @RequestBody AcidentDTO acidentDTO){
 		var acident = new Acident();
 		BeanUtils.copyProperties(acidentDTO, acident);
 		return ResponseEntity.status(HttpStatus.CREATED).body(acidentService.save(acident));
@@ -47,7 +49,7 @@ public class AcidentController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Acident> updateAcident(@RequestBody AcidentDTO acidentDTO, 
+	public ResponseEntity<Acident> updateAcident(@Valid @RequestBody AcidentDTO acidentDTO, 
 			@PathVariable Long id){
 		
 		Optional<Acident> acidentOPTIONAL = acidentService.findById(id);

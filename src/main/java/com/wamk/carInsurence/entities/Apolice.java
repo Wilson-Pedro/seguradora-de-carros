@@ -3,9 +3,13 @@ package com.wamk.carInsurence.entities;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,13 +22,23 @@ public class Apolice implements Serializable{
 	private Long id;
 	private Double value;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id")
+	private Car car;
+	
 	public Apolice() {
 	}
 
-	public Apolice(Long id, Double value) {
+	public Apolice(Long id, Double value, Client client, Car car) {
 		super();
 		this.id = id;
 		this.value = value;
+		this.client = client;
+		this.car = car;
 	}
 
 	public Long getId() {
@@ -41,6 +55,22 @@ public class Apolice implements Serializable{
 
 	public void setValue(Double value) {
 		this.value = value;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
 	}
 
 	@Override
