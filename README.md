@@ -3,6 +3,9 @@
 
 O projeto de seguro de carros é uma iniciativa que visa oferecer proteção e tranquilidade aos proprietários de veículos. Através desse serviço, os segurados podem contar com cobertura em casos de acidentes, roubos, danos e outras eventualidades, evitando prejuízos financeiros. O projeto busca fornecer opções flexíveis de cobertura, adaptadas às necessidades individuais dos clientes, e oferecer um processo ágil e eficiente para a solicitação e a liquidação de sinistros. Além disso, o projeto busca promover a conscientização sobre a importância do seguro de carros como um elemento essencial para a segurança no trânsito.
 
+## Modelo conceitual
+![Modelo Conceitual](https://github.com/Wilson-Pedro/images/blob/main/seguradora-de-carros/Seguradora%20de%20carros%20(1).png)
+
 # Tecnologias utilizadas
 ## Back end
 - Java
