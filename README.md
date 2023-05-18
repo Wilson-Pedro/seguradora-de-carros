@@ -16,6 +16,9 @@ O projeto de seguro de carros é uma iniciativa que visa oferecer proteção e t
 ## Banco de dados
 -Postgres
 
+## Status do Projeto:
+-Em desenvolvimento
+
 ## Fazendo a instalação do projeto
 
 Para rodar o projeto localmente faça o download das seguintes ferramentas:
