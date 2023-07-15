@@ -34,7 +34,7 @@ Depois de ter instalado as ferramentas, crie uma pasta e de um nome a ela. Entã
 git clone git@github.com:Wilson-Pedro/seguradora-de-carros.git
 ```
 
-Após isso abra o STS ou uma IDE que suporte o SPRING e execute o projeto.
+Após isso abra o STS ou qualquer IDE que suporte o SPRING e execute o projeto.
 
 -> Com o STS vá em 'CarInsurenceApplication.java' e clique com o potão direito
 -> Vá em 'Run As'
