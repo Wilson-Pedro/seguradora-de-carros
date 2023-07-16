@@ -30,6 +30,8 @@ Para rodar o projeto localmente faça o download das seguintes ferramentas:
 
 Depois de ter instalado as ferramentas, crie uma pasta e de um nome a ela. Então abra o seu terminal nessa pasta. e digite o seguinte comando:
 
+![ABRIR-GIT-BASH](https://github.com/Wilson-Pedro/images/blob/main/git-bash/abrir-git-bash.png)
+
 ```bash
 git clone git@github.com:Wilson-Pedro/seguradora-de-carros.git
 ```
@@ -43,7 +45,7 @@ Após isso abra o STS ou qualquer IDE que suporte o SPRING e execute o projeto.
 ![Excecutando projeto](https://github.com/Wilson-Pedro/images/blob/main/seguradora-de-carros/executar-projeto.png)
 
 
-## Abra o seu Postman e coloque a URL de acordo com o verbo HTTP:
+# Abra o [Postman](https://www.postman.com/downloads/) e teste o seguintes endpoints:
 
 # POST
 ```
