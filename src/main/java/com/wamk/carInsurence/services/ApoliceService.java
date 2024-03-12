@@ -35,7 +35,7 @@ public class ApoliceService {
 	public Apolice update(Apolice apolice, Long id) {
 		Apolice apoliceUpdated = findById(id);
 		apoliceUpdated.setValue(apolice.getValue());
-		return apoliceUpdated;
+		return apoliceRepository.save(apoliceUpdated);
 	}
 
 	@Transactional

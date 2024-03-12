@@ -3,6 +3,8 @@ package com.wamk.carInsurence.dtos;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.wamk.carInsurence.entities.Acident;
+
 import jakarta.validation.constraints.NotNull;
 
 public class AcidentDTO implements Serializable{
@@ -21,10 +23,15 @@ public class AcidentDTO implements Serializable{
 	}
 
 	public AcidentDTO(Instant data_acidente, Instant hora_acidente, String local_acidente) {
-		super();
 		this.data_acidente = data_acidente;
 		this.hora_acidente = hora_acidente;
 		this.local_acidente = local_acidente;
+	}
+	
+	public AcidentDTO(Acident acident) {
+		data_acidente = acident.getData_acidente();
+		hora_acidente = acident.getHora_acidente();
+		local_acidente = acident.getLocal_acidente();
 	}
 
 	public Instant getData_acidente() {

@@ -37,7 +37,7 @@ public class CarService {
 		var carUpdated = findById(id);
 		BeanUtils.copyProperties(car, carUpdated);
 		carUpdated.setId(id);
-		return carUpdated;
+		return carRepository.save(carUpdated);
 	}
 
 	@Transactional

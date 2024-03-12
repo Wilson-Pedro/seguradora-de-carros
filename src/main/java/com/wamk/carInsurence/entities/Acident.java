@@ -3,6 +3,8 @@ package com.wamk.carInsurence.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.wamk.carInsurence.dtos.AcidentDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +39,12 @@ public class Acident implements Serializable{
 		this.hora_acidente = hora_acidente;
 		this.local_acidente = local_acidente;
 		this.car = car;
+	}
+	
+	public Acident(AcidentDTO acidentDto) {
+		data_acidente = acidentDto.getData_acidente();
+		hora_acidente = acidentDto.getHora_acidente();
+		local_acidente = acidentDto.getLocal_acidente();
 	}
 
 	public Long getId() {

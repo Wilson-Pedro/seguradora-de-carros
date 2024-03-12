@@ -37,7 +37,7 @@ public class ClientService {
 		Client clientUpdated = findById(id);
 		BeanUtils.copyProperties(client, clientUpdated);
 		client.setId(id);
-		return clientUpdated;
+		return clientRepository.save(clientUpdated);
 	}
 
 	@Transactional
