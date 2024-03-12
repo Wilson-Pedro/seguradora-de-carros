@@ -1,9 +1,7 @@
 package com.wamk.carInsurence.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,38 +29,31 @@ public class ApoliceController {
 	
 	@PostMapping
 	public ResponseEntity<Apolice> addApolice(@Valid @RequestBody ApoliceDTO apoliceDTO){
-		var apolice = new Apolice();
-		BeanUtils.copyProperties(apoliceDTO, apolice);
-		return ResponseEntity.status(HttpStatus.CREATED).body(apoliceService.save(apolice));
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(apoliceService.save(new Apolice(apoliceDTO)));
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<Apolice>> findAll(){
-		List<Apolice> list = apoliceService.findAll();
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok(apoliceService.findAll());
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Apolice> findById(@PathVariable Long id){
-		Optional<Apolice> apolice = apoliceService.findById(id);
-		return ResponseEntity.ok().body(apolice.get());
+		return ResponseEntity.ok(apoliceService.findById(id));
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Apolice> updateApolice(@PathVariable Long id,
 			@Valid @RequestBody ApoliceDTO apoliceDTO){
-		Optional<Apolice> apoliceOPTIONAL = apoliceService.findById(id);
-		var apolice = new Apolice();
-		BeanUtils.copyProperties(apoliceDTO, apolice);
-		apolice.setId(apoliceOPTIONAL.get().getId());
-		return ResponseEntity.ok().body(apoliceService.save(apolice));
+		Apolice apolice = apoliceService.update(new Apolice(apoliceDTO), id);
+		return ResponseEntity.ok(apolice);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Object> deleteApolice(@PathVariable Long id){
-		Optional<Apolice> apoliceOPTIONAL = apoliceService.findById(id);
-		apoliceService.delete(apoliceOPTIONAL.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Apolice deleted successfully");
+	public ResponseEntity<Void> deleteApolice(@PathVariable Long id){
+		apoliceService.delete(id);
+		return ResponseEntity.noContent().build();
 		
 	}
 

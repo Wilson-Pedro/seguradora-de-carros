@@ -2,6 +2,8 @@ package com.wamk.carInsurence.entities;
 
 import java.io.Serializable;
 
+import com.wamk.carInsurence.dtos.ApoliceDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +41,11 @@ public class Apolice implements Serializable{
 		this.value = value;
 		this.client = client;
 		this.car = car;
+	}
+	
+	public Apolice(ApoliceDTO apoliceDTO) {
+		this.value = apoliceDTO.getValue();
+
 	}
 
 	public Long getId() {

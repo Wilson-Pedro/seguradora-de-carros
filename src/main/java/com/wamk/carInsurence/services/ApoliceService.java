@@ -1,13 +1,13 @@
 package com.wamk.carInsurence.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wamk.carInsurence.entities.Apolice;
 import com.wamk.carInsurence.entities.repositories.ApoliceRepository;
+import com.wamk.carInsurence.exceptionhandle.exceptions.EntityNotFoundException;
 
 import jakarta.transaction.Transactional;
 
@@ -26,12 +26,21 @@ public class ApoliceService {
 		return apoliceRepository.findAll();
 	}
 
-	public Optional<Apolice> findById(Long id) {
-		return apoliceRepository.findById(id);
+	public Apolice findById(Long id) {
+		return apoliceRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException());
+	}
+	
+	@Transactional
+	public Apolice update(Apolice apolice, Long id) {
+		Apolice apoliceUpdated = findById(id);
+		apoliceUpdated.setValue(apolice.getValue());
+		return apoliceUpdated;
 	}
 
 	@Transactional
-	public void delete(Apolice apolice) {
-		apoliceRepository.delete(apolice);
+	public void delete(Long id) {
+		apoliceRepository.delete(apoliceRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException()));
 	}
 }
