@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wamk.carInsurence.dtos.CarDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +37,11 @@ public class Car implements Serializable{
 	public Car() {
 	}
 
+	public Car(CarDTO carDTO) {
+		register = carDTO.getRegister();
+		brand = carDTO.getBrand();
+	}
+	
 	public Car(Long id, String register, String brand, Apolice apolice) {
 		super();
 		this.id = id;

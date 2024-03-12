@@ -2,6 +2,8 @@ package com.wamk.carInsurence.dtos;
 
 import java.io.Serializable;
 
+import com.wamk.carInsurence.entities.Car;
+
 import jakarta.validation.constraints.NotNull;
 
 public class CarDTO implements Serializable{
@@ -20,6 +22,11 @@ public class CarDTO implements Serializable{
 		super();
 		this.register = register;
 		this.brand = brand;
+	}
+	
+	public CarDTO(Car car) {
+		register = car.getRegister();
+		brand = car.getBrand();
 	}
 
 	public String getRegister() {

@@ -1,13 +1,14 @@
 package com.wamk.carInsurence.services;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wamk.carInsurence.entities.Car;
 import com.wamk.carInsurence.entities.repositories.CarRepository;
+import com.wamk.carInsurence.exceptionhandle.exceptions.EntityNotFoundException;
 
 import jakarta.transaction.Transactional;
 
@@ -26,13 +27,22 @@ public class CarService {
 		return carRepository.findAll();
 	}
 
-	public Optional<Car> findById(Long id) {
-		return carRepository.findById(id);
+	public Car findById(Long id) {
+		return carRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException());
+	}
+	
+	@Transactional
+	public Car update(Car car, Long id) {
+		var carUpdated = findById(id);
+		BeanUtils.copyProperties(car, carUpdated);
+		carUpdated.setId(id);
+		return carUpdated;
 	}
 
 	@Transactional
-	public void delete(Car car) {
-		carRepository.delete(car);
+	public void delete(Long id) {
+		carRepository.delete(carRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException()));
 	}
-
 }
