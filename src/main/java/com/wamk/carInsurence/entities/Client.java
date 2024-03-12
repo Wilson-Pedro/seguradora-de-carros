@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wamk.carInsurence.dtos.ClientDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,10 +33,14 @@ public class Client implements Serializable{
 	}
 
 	public Client(Long id, String name, String address) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
+	}
+	
+	public Client(ClientDTO clientDTO) {
+		name = clientDTO.getName();
+		address = clientDTO.getAddress();
 	}
 
 	public Long getId() {

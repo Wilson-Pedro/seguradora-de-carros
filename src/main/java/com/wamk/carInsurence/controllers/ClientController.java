@@ -1,9 +1,7 @@
 package com.wamk.carInsurence.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,38 +29,33 @@ public class ClientController {
 	
 	@PostMapping
 	public ResponseEntity<Client> adcionar(@Valid @RequestBody ClientDTO clientDTO) {
-		var client = new Client();
-		BeanUtils.copyProperties(clientDTO, client);
-		return ResponseEntity.status(HttpStatus.CREATED).body(clientService.save(client));
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(clientService.save(new Client(clientDTO)));
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Client>> findAll(){
+	public ResponseEntity<List<ClientDTO>> findAll(){
 		List<Client> list = clientService.getAll();
-		return ResponseEntity.ok().body(list);
+		List<ClientDTO> listDto = list.stream().map(x -> new ClientDTO(x)).toList();
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Optional<Client>> finfById(@PathVariable Long id){
-		Optional<Client> client = clientService.findById(id);
+	public ResponseEntity<Client> finfById(@PathVariable Long id){
+		Client client = clientService.findById(id);
 		return ResponseEntity.ok().body(client);
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Client> updateClient(@Valid @RequestBody ClientDTO clientDTO, 
 			@PathVariable Long id){
-		
-		Optional<Client> clientOPTIONAL = clientService.findById(id);
-		var client = new Client();
-		BeanUtils.copyProperties(clientDTO, client);
-		client.setId(clientOPTIONAL.get().getId());
-		return ResponseEntity.ok().body(clientService.save(client));
+		Client clientUpdated = clientService.update(new Client(clientDTO), id);
+		return ResponseEntity.ok().body(clientUpdated);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Object> deleteClient(@PathVariable Long id){
-		Optional<Client> obj = clientService.findById(id);
-		clientService.delete(obj.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Client deleted successfully");
+	public ResponseEntity<Void> deleteClient(@PathVariable Long id){
+		clientService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

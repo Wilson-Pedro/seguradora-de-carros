@@ -1,4 +1,4 @@
-package com.wamk.carInsurence.controllers.exceptions;
+package com.wamk.carInsurence.exceptionhandle;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;

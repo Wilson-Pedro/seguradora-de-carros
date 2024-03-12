@@ -2,6 +2,8 @@
 
 import java.io.Serializable;
 
+import com.wamk.carInsurence.entities.Client;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class ClientDTO implements Serializable{
@@ -17,9 +19,13 @@ public class ClientDTO implements Serializable{
 	}
 
 	public ClientDTO(String name, String address) {
-		super();
 		this.name = name;
 		this.address = address;
+	}
+	
+	public ClientDTO(Client client) {
+		name = client.getName();
+		address = client.getAddress();
 	}
 
 	public String getName() {
