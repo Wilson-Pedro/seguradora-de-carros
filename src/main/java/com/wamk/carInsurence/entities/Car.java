@@ -7,6 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wamk.carInsurence.dtos.CarDTO;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,12 @@ public class Car implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String register;
+	
+	@Column(unique=true)
+	private String plate;
+	
 	private String brand;
 	
 	@JsonIgnore
@@ -39,13 +45,16 @@ public class Car implements Serializable{
 
 	public Car(CarDTO carDTO) {
 		register = carDTO.getRegister();
+		plate = carDTO.getPlate();
 		brand = carDTO.getBrand();
 	}
 	
-	public Car(Long id, String register, String brand, Apolice apolice) {
+
+	public Car(Long id, String register, String plate, String brand, Apolice apolice) {
 		super();
 		this.id = id;
 		this.register = register;
+		this.plate = plate;
 		this.brand = brand;
 		this.apolice = apolice;
 	}
@@ -66,6 +75,14 @@ public class Car implements Serializable{
 		this.register = register;
 	}
 
+	public String getPlate() {
+		return plate;
+	}
+
+	public void setPlate(String plate) {
+		this.plate = plate;
+	}
+	
 	public String getBrand() {
 		return brand;
 	}
