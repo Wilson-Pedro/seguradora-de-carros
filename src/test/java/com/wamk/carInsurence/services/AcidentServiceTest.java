@@ -30,7 +30,7 @@ class AcidentServiceTest {
 	@Autowired
 	AcidentService acidentService;
 
-	Car car = new Car(null, "1234567", "JHG-1477", "UNO", null);
+	Car car = new Car(null, "1234567", "JHG-1477", "UNO");
 	Acident acident = new Acident(null, Instant.now(), Instant.now(), "Av.Getúlio Vargas", car);
 
 

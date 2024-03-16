@@ -20,6 +20,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.wamk.carInsurence.exceptionhandle.exceptions.EntityNotFoundException;
+import com.wamk.carInsurence.exceptionhandle.exceptions.ExistingPlateException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler extends ResponseEntityExceptionHandler{
@@ -56,6 +57,19 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler{
 		problema.setStatus(status.value());
 		problema.setDataHora(OffsetDateTime.now());
 		problema.setTitulo("Um ou mais campos estão inválidos! Preencha-os corretamente");
+		
+		return ResponseEntity.status(status).body(problema);
+	}
+	
+	@ExceptionHandler(ExistingPlateException.class)
+	public ResponseEntity<Problema> existingPlateException() {
+		
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		
+		Problema problema = new Problema();
+		problema.setStatus(status.value());
+		problema.setDataHora(OffsetDateTime.now());
+		problema.setTitulo("Esta Placa já foi cadastrada!");
 		
 		return ResponseEntity.status(status).body(problema);
 	}

@@ -50,13 +50,12 @@ public class Car implements Serializable{
 	}
 	
 
-	public Car(Long id, String register, String plate, String brand, Apolice apolice) {
+	public Car(Long id, String register, String plate, String brand) {
 		super();
 		this.id = id;
 		this.register = register;
 		this.plate = plate;
 		this.brand = brand;
-		this.apolice = apolice;
 	}
 
 	public Long getId() {

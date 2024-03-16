@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.wamk.carInsurence.entities.Car;
 import com.wamk.carInsurence.entities.repositories.CarRepository;
 import com.wamk.carInsurence.exceptionhandle.exceptions.EntityNotFoundException;
+import com.wamk.carInsurence.exceptionhandle.exceptions.ExistingPlateException;
 
 import jakarta.transaction.Transactional;
 
@@ -20,6 +21,8 @@ public class CarService {
 
 	@Transactional
 	public Car save(Car car) {
+		if(carRepository.existsByPlate(car.getPlate()))
+			throw new ExistingPlateException();
 		return carRepository.save(car);
 	}
 

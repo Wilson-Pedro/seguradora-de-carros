@@ -10,10 +10,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.wamk.carInsurence.entities.Car;
+import com.wamk.carInsurence.entities.repositories.AcidentRepository;
+import com.wamk.carInsurence.entities.repositories.ApoliceRepository;
 import com.wamk.carInsurence.entities.repositories.CarRepository;
+import com.wamk.carInsurence.entities.repositories.ClientRepository;
 
 @SpringBootTest
 class CarServiceTest {
@@ -24,15 +26,26 @@ class CarServiceTest {
 	@Autowired
 	CarService carService;
 	
-	Car car = new Car(null, "1234567", "JHG-1477", "UNO", null);
+	@Autowired
+	ApoliceRepository apoliceRepository;
+	
+	@Autowired
+	ClientRepository clientRepository;
+	
+	@Autowired
+	AcidentRepository acidentRepository;
+	
+	Car car = new Car(null, "1234567", "JHG-1477", "UNO");
 	
 	@BeforeEach
 	void setup() {
+		apoliceRepository.deleteAll();
+		clientRepository.deleteAll();
+		acidentRepository.deleteAll();
 		carRepository.deleteAll();
 	}
 
 	@Test
-	@Transactional
 	@DisplayName("Shoul Save The Car Successfully")
 	void saveCase01() {
 		assertEquals(0, carRepository.count());
