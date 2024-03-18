@@ -50,7 +50,7 @@ public class CarController {
 			@RequestBody CarDTO carDTO){
 		
 		Car carUpdate = carService.update(new Car(carDTO), id);
-		return ResponseEntity.ok(carService.save(carUpdate));
+		return ResponseEntity.ok(carUpdate);
 	}
 	
 	@DeleteMapping(value = "/{id}")
