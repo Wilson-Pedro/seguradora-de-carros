@@ -14,7 +14,6 @@ public class ApoliceDTO implements Serializable{
 	}
 
 	public ApoliceDTO(Double value) {
-		super();
 		this.value = value;
 	}
 

@@ -92,5 +92,4 @@ class AcidentServiceTest {
 
 		assertEquals(0, acidentRepository.count());
 	}
-
 }
