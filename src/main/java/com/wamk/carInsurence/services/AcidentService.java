@@ -29,12 +29,6 @@ public class AcidentService {
 		return acidentRepository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException());
 	}
-	
-//	public Acident update(Acident acident, Long id) {
-//		Acident acidentUpdated = findById(id);
-//		BeanUtils.copyProperties(acident, acidentUpdated);
-//		return acidentRepository.save(acidentUpdated);
-//	}
 
 	@Transactional
 	public void delete(Long id) {

@@ -42,13 +42,6 @@ public class AcidentController {
 		return ResponseEntity.ok(acidentService.findById(id));
 	}
 	
-//	@PutMapping(value = "/{id}")
-//	public ResponseEntity<Acident> updateAcident(@Valid @RequestBody AcidentDTO acidentDTO, 
-//			@PathVariable Long id){
-//		Acident acident = acidentService.update(new Acident(acidentDTO), id);
-//		return ResponseEntity.ok(acident);
-//	}
-	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteAcident(@PathVariable Long id){
 		acidentService.delete(id);

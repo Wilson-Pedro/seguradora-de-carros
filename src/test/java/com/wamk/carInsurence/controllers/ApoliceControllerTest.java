@@ -27,7 +27,6 @@ import com.wamk.carInsurence.entities.repositories.AcidentRepository;
 import com.wamk.carInsurence.entities.repositories.ApoliceRepository;
 import com.wamk.carInsurence.entities.repositories.CarRepository;
 import com.wamk.carInsurence.entities.repositories.ClientRepository;
-import com.wamk.carInsurence.services.ApoliceService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -35,9 +34,6 @@ class ApoliceControllerTest {
 
 	@Autowired
 	ApoliceRepository apoliceRepository;
-
-	@Autowired
-	ApoliceService apoliceService;
 
 	@Autowired
 	CarRepository carRepository;
